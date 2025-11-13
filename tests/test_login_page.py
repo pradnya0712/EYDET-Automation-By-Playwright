@@ -14,9 +14,9 @@ def login(browser_page):
     print("\nBrowser launched successfully")
     print(f"Page title: {page.title()}")
     print(f"Current page URL: {page.url}")
-
+    # "EK DET Environment - Login"
     assert (
-        "EK DET Environment - Login" in page.title()
+        "AF CRA DET Environment - Login" in page.title()
     ), "title does not match with expected title"
 
     loginObject = SsoLoginObjects(page)
@@ -24,7 +24,7 @@ def login(browser_page):
     loginObject.enter_password(config["password"])
     commonaction.take_screenshot(pagetitle)
     loginObject.click_on_login_btn()
-    # loginObject.click_on_submit_otp_btn()
+    loginObject.click_on_submit_otp_btn()
     commonaction.take_screenshot(pagetitle)
 
     return page

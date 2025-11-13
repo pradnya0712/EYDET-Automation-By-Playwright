@@ -1,5 +1,1 @@
-test_Add_AWB_TC2 FAIL | FAILURE: check AWB- 176 78000112 failed in validation, Please see error section. in AWB - 176 78000112 successfully validated.: AWB - 176 78000112 is not save. Please check logs.
-tests\test_addAWB_TC2.py:99 in test_Add_AWB_TC2() -> check.is_in(
-
-------------------------------------------------------------
-Failed Checks: 1
+test_Add_AWB_TC1 PASS

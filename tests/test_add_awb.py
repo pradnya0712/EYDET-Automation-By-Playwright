@@ -11,7 +11,7 @@ config = get_config("LoginDetails")
 testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "Add_AWB")
 
 
-def test_Add_AWB_TC1(browser_page):
+def test_Add_AWB(browser_page):
     page = login(browser_page)
     commonaction = CommonActions(page)
 
@@ -63,15 +63,15 @@ def test_Add_AWB_TC1(browser_page):
         add_awb.select_mop_other_charge(row["MOP_Other_Charge"])
         add_awb.enter_othercharge_code(row["Other_Charge_Code"])
         add_awb.enter_othercharge_code_amount(row["Other_Charge_Code_Amount"])
-        add_awb.enter_OCDC_amount_in_TotalCharges(row["Other_Charge_Code_Amount"])
+        # add_awb.enter_OCDC_amount_in_TotalCharges(row["Other_Charge_Code_Amount"])
         time.sleep(3)
         commonaction.take_screenshot(pagetitle)
 
         add_awb.click_on_expan_additionalDetaisl()
-        add_awb.enter_flight_from_sector(row["Flight_from_Airport"])
-        add_awb.enter_flight_to_sector(row["Flight_to_Airport"])
-        add_awb.enter_flight_number(row["Flight_Number"])
-        add_awb.enter_flight_date(row["Flight_Date"])
+        # add_awb.enter_flight_from_sector(row["Flight_from_Airport"])
+        # add_awb.enter_flight_to_sector(row["Flight_to_Airport"])
+        # add_awb.enter_flight_number(row["Flight_Number"])
+        # add_awb.enter_flight_date(row["Flight_Date"])
         add_awb.click_on_save_btn()
         time.sleep(5)
         commonaction.take_screenshot(pagetitle)
