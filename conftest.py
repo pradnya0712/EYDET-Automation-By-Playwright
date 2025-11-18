@@ -14,8 +14,12 @@ captured_results = []
 def browser_page():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"])
-        context = browser.new_context(no_viewport=True)
+        context = browser.new_context(no_viewport=True, storage_state="auth.json")
         page = context.new_page()
+        APP_URL = (
+            "https://rapidwebcra-det-af.accelya.io/CRA/home.htm"  # <-- UPDATE THIS
+        )
+        page.goto(APP_URL, wait_until="domcontentloaded")
         yield page
         context.close()
         browser.close()

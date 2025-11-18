@@ -18,7 +18,7 @@ class SsoLoginObjects:
 
     def click_on_login_btn(self):
         self.loginBtn.click()
-        time.sleep(5)
+        time.sleep(2)
 
         self.accept_popup = self.page.locator(
             "#sessionConfirmAlertForm_sessionYesButton"
@@ -30,7 +30,7 @@ class SsoLoginObjects:
         except:
             pass  # popup not present
 
-            time.sleep(60)  # wait for next steps (optional)
+            time.sleep(2)  # wait for next steps (optional)
 
     def click_on_submit_otp_btn(self):
         self.submitOTP.click()

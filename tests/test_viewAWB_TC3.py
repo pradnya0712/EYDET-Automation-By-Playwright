@@ -11,7 +11,8 @@ testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "View_A
 
 
 def test_View_AWB_TC3(browser_page):
-    page = login(browser_page)
+    # page = login(browser_page)
+    page = browser_page
     commonaction = CommonActions(page)
 
     view_awb = ViewAWB(page)
@@ -24,7 +25,7 @@ def test_View_AWB_TC3(browser_page):
     row = testdata[specific_row_index]
     screenName = "View Air Waybill"
     page = commonaction.select_screen(screenName)
-    # time.sleep(3)
+
     pagetitle = commonaction.get_page_title()
     print("---> " + pagetitle)
     view_awb.enter_airline_prefix(row["Airline_Prefix"])

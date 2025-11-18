@@ -15,7 +15,8 @@ print("Excel columns:", testdata[0].keys())
 
 def test_Add_AWB_TC2(browser_page):
     try:
-        page = login(browser_page)
+        # page = login(browser_page)
+        page = browser_page
         commonaction = CommonActions(page)
 
         add_awb = addAWB(page)
@@ -30,7 +31,7 @@ def test_Add_AWB_TC2(browser_page):
         row = testdata[specific_row_index]
         screenName = "Add Air Waybill"
         page = commonaction.select_screen(screenName)
-        time.sleep(3)
+
         pagetitle = commonaction.get_page_title()
         print("---> " + pagetitle)
         commonaction.set_zoom_level(60)
@@ -41,7 +42,7 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.select_mop_frieght(row["MOP_Freight"])
         add_awb.enter_currency(row["Currency"])
         add_awb.enter_commodity_name(row["Commodity"])
-        time.sleep(3)
+
         commonaction.take_screenshot(pagetitle)
 
         add_awb.enter_shipper_name(row["Shipper"])
@@ -51,7 +52,7 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.enter_from_airport(row["Origin"])
         add_awb.enter_to_airport(row["Destination"])
         add_awb.enter_carrier(row["Carrier"])
-        time.sleep(3)
+
         commonaction.take_screenshot(pagetitle)
 
         add_awb.click_on_add_chargelineinfo_icon()
@@ -64,7 +65,7 @@ def test_Add_AWB_TC2(browser_page):
         commonaction.take_screenshot(pagetitle)
         add_awb.enter_discount(row["Discount"])
         add_awb.enter_commission(row["Commission"])
-        time.sleep(3)
+
         commonaction.take_screenshot(pagetitle)
 
         add_awb.click_on_expand_other_charge_icon()
@@ -73,7 +74,7 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.enter_othercharge_code(row["Other_Charge_Code"])
         add_awb.enter_othercharge_code_amount(row["Other_Charge_Code_Amount"])
         # add_awb.enter_OCDC_amount_in_TotalCharges(row["Other_Charge_Code_Amount"])
-        time.sleep(3)
+
         commonaction.take_screenshot(pagetitle)
 
         # add_awb.click_on_expan_additionalDetaisl()
@@ -83,7 +84,7 @@ def test_Add_AWB_TC2(browser_page):
         # add_awb.enter_flight_date(row["Flight_Date"])
         add_awb.click_on_save_btn()
         print("Click on save btn")
-        time.sleep(5)
+
         commonaction.take_screenshot(pagetitle)
 
         message = add_awb.get_message_on_awb_save()
@@ -107,7 +108,7 @@ def test_Add_AWB_TC2(browser_page):
         )
         add_awb.click_on_close_popup_message()
         print("Click on close popup icon")
-        time.sleep(3)
+
         add_awb.scroll_down()
         commonaction.take_screenshot(pagetitle)
         add_awb.click_on_cancel_btn()

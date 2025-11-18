@@ -12,7 +12,8 @@ testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "View_A
 
 
 def test_View_AWB_TC2(browser_page):
-    page = login(browser_page)
+    # page = login(browser_page)
+    page = browser_page
     commonaction = CommonActions(page)
 
     view_awb = ViewAWB(page)
@@ -25,7 +26,7 @@ def test_View_AWB_TC2(browser_page):
     row = testdata[specific_row_index]
     screenName = "View Air Waybill"
     page = commonaction.select_screen(screenName)
-    # time.sleep(3)
+
     pagetitle = commonaction.get_page_title()
     print("---> " + pagetitle)
     view_awb.enter_airline_prefix(row["Airline_Prefix"])
@@ -34,6 +35,7 @@ def test_View_AWB_TC2(browser_page):
     view_awb.select_mop_freight(row["MOP_Freight"])
     view_awb.select_flownstaus(row["Flown_Status"])
     view_awb.select_exportBillingStatus(row["ExportBilling_Status"])
+    time.sleep(3)
     commonaction.set_zoom_level(60)
     commonaction.take_screenshot(pagetitle)
 

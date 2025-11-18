@@ -1,1 +1,7 @@
 test_Add_AWB_TC1 PASS
+test_Add_AWB_TC2 PASS
+test_Add_AWB_TC3 PASS
+test_Add_AWB_TC4 PASS
+test_View_AWB_TC1 PASS
+test_View_AWB_TC2 PASS
+test_View_AWB_TC3 PASS
