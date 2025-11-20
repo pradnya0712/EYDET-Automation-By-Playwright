@@ -1,10 +1,8 @@
 from pages.addAWBObjects import addAWB
-from test_login_page import login
 from utils.helpers import CommonActions
 from utils.excel_reader import read_excel_data
 from utils.config_reader import get_config
 import os
-import time
 import pytest
 import pytest_check as check
 
@@ -18,23 +16,24 @@ def test_Add_AWB_TC2(browser_page):
         # page = login(browser_page)
         page = browser_page
         commonaction = CommonActions(page)
-
         add_awb = addAWB(page)
 
-        # for row in testdata:
-
-        # Target a specific row (e.g., second row after header)
-        specific_row_index = 1  # 0 = first row after header, 1 = second, etc.
+        # Pick the test row
+        specific_row_index = 1
         if specific_row_index >= len(testdata):
             pytest.skip(f"No row at index {specific_row_index} in Excel data")
 
         row = testdata[specific_row_index]
+
+        # Navigate to screen
         screenName = "Add Air Waybill"
         page = commonaction.select_screen(screenName)
 
         pagetitle = commonaction.get_page_title()
         print("---> " + pagetitle)
         commonaction.set_zoom_level(60)
+
+        # Fill Basic AWB Fields
         add_awb.enter_airline_prefix(row["Airline_Prefix"])
         add_awb.enter_serial_number(row["Serial_Number"])
         add_awb.enter_issue_date(row["Issue_Date"])
@@ -42,19 +41,20 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.select_mop_frieght(row["MOP_Freight"])
         add_awb.enter_currency(row["Currency"])
         add_awb.enter_commodity_name(row["Commodity"])
-
         commonaction.take_screenshot(pagetitle)
 
+        # Shipper / Consignee
         add_awb.enter_shipper_name(row["Shipper"])
         add_awb.enter_consignee_name(row["Consignee"])
         add_awb.enter_agent_code(row["Selling_Location"])
+
+        # Routing Info
         add_awb.click_on_add_routing_info_icon()
         add_awb.enter_from_airport(row["Origin"])
         add_awb.enter_to_airport(row["Destination"])
         add_awb.enter_carrier(row["Carrier"])
-
         commonaction.take_screenshot(pagetitle)
-
+        # Charge Line Info
         add_awb.click_on_add_chargelineinfo_icon()
         add_awb.enter_no_of_pieces(row["No_Of_Pieces"])
         add_awb.select_unit_of_weight(row["Unit_Of_Weight"])
@@ -62,34 +62,27 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.enter_rate_class(row["Rate_Class"])
         add_awb.enter_chargeable_weight(row["Chargeable_Weight"])
         add_awb.enter_rate(row["Rate"])
-        commonaction.take_screenshot(pagetitle)
         add_awb.enter_discount(row["Discount"])
         add_awb.enter_commission(row["Commission"])
-
         commonaction.take_screenshot(pagetitle)
 
+        # Other Charges
         add_awb.click_on_expand_other_charge_icon()
         add_awb.click_on_add_other_charges_icon()
         add_awb.select_mop_other_charge(row["MOP_Other_Charge"])
         add_awb.enter_othercharge_code(row["Other_Charge_Code"])
         add_awb.enter_othercharge_code_amount(row["Other_Charge_Code_Amount"])
-        # add_awb.enter_OCDC_amount_in_TotalCharges(row["Other_Charge_Code_Amount"])
-
         commonaction.take_screenshot(pagetitle)
 
-        # add_awb.click_on_expan_additionalDetaisl()
-        # add_awb.enter_flight_from_sector(row["Flight_from_Airport"])
-        # add_awb.enter_flight_to_sector(row["Flight_to_Airport"])
-        # add_awb.enter_flight_number(row["Flight_Number"])
-        # add_awb.enter_flight_date(row["Flight_Date"])
+        # Save AWB
         add_awb.click_on_save_btn()
         print("Click on save btn")
-
         commonaction.take_screenshot(pagetitle)
-
+        # Validate success popup
         message = add_awb.get_message_on_awb_save()
         awbNum = commonaction.eight_digit_AWB(row["Serial_Number"])
-        print(message)
+        print("Message:", message)
+
         expected_message = (
             "AWB - "
             + str(row["Airline_Prefix"])
@@ -97,24 +90,23 @@ def test_Add_AWB_TC2(browser_page):
             + str(awbNum)
             + " successfully validated."
         )
-        check.is_in(
-            message,
-            expected_message,
-            "AWB - "
-            + str(row["Airline_Prefix"])
-            + " "
-            + str(awbNum)
-            + " is not save. Please check logs.",
-        )
-        add_awb.click_on_close_popup_message()
-        print("Click on close popup icon")
 
+        # ✔ FIXED: Correct soft assertion
+        check.is_in(
+            expected_message,
+            message,
+            f"AWB {row['Airline_Prefix']} {awbNum} did not validate successfully.",
+        )
+
+        add_awb.click_on_close_popup_message()
+        print("Close popup clicked")
+
+        # Scroll + Cancel
         add_awb.scroll_down()
         commonaction.take_screenshot(pagetitle)
         add_awb.click_on_cancel_btn()
-        print("Click on cancel btn")
+        print("Cancel button clicked")
 
     except Exception as e:
-        # Properly catch and print exceptions
-        print(f"❌ Exception occurred in test_Add_AWB_TC1: {str(e)}")
+        print(f"❌ Exception occurred in test_Add_AWB_TC2: {str(e)}")
         pytest.fail(f"Test failed due to exception: {e}")

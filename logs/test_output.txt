@@ -1,5 +1,13 @@
-test_Add_AWB_TC1 PASS
-test_Add_AWB_TC2 PASS
+test_Add_AWB_TC1 FAIL | FAILURE: check AWB - 057 97024863 successfully validated. in AWB- 057 97024863 failed in validation, Please see error section.: AWB 057 97024863 did not validate successfully.
+tests\test_addAWB_TC1.py:100 in test_Add_AWB_TC1() -> check.is_in(
+
+------------------------------------------------------------
+Failed Checks: 1
+test_Add_AWB_TC2 FAIL | FAILURE: check AWB - 057 97024874 successfully validated. in AWB- 057 97024874 failed in validation, Please see error section.: AWB 057 97024874 did not validate successfully.
+tests\test_addAWB_TC2.py:95 in test_Add_AWB_TC2() -> check.is_in(
+
+------------------------------------------------------------
+Failed Checks: 1
 test_Add_AWB_TC3 PASS
 test_Add_AWB_TC4 PASS
 test_View_AWB_TC1 PASS
