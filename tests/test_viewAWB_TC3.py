@@ -39,12 +39,17 @@ def test_View_AWB_TC3(browser_page):
         # Soft assertion: record count
         actual_message = view_awb.get_actual_message()
         print("Search Result Message:", actual_message)
-        check.is_in(
-            "1 records found",
-            actual_message,
-            f"Expected '1 records found' but got: {actual_message}",
-        )
 
+        actual_message = view_awb.get_actual_message()
+        expected_message = " 1 records found"
+        print("Search Result Message:", actual_message)
+
+        CommonActions.soft_assert(
+            page,
+            expected_message,
+            actual_message,
+            f"Expected '{expected_message}' but got '{actual_message}'",
+        )
         # Select record
         view_awb.select_awb_record()
         commonaction.set_zoom_level(60)
@@ -53,11 +58,13 @@ def test_View_AWB_TC3(browser_page):
         # DETAILS TAB
         view_awb.click_on_detail_link()
         details_serial = view_awb.get_serial_number_text()
-        check.is_in(
-            str(row["Serial_Number"]),
+        CommonActions.soft_assert(
+            page,
+            awb_number,
             details_serial,
             "Serial number mismatch in Details tab",
         )
+
         commonaction.set_zoom_level(60)
         commonaction.take_screenshot(pagetitle)
         commonaction.scroll_into_view(view_awb.scroll_toward_total_charges)
@@ -70,8 +77,9 @@ def test_View_AWB_TC3(browser_page):
         view_awb.click_on_proration_link()
 
         proration_serial = view_awb.get_serial_number_text()
-        check.is_in(
-            str(row["Serial_Number"]),
+        CommonActions.soft_assert(
+            page,
+            awb_number,
             proration_serial,
             "Serial number mismatch in Proration tab",
         )
@@ -82,8 +90,9 @@ def test_View_AWB_TC3(browser_page):
         # FLOWN TAB
         view_awb.click_on_flown_link()
         flown_serial = view_awb.get_flown_details_document_number()
-        check.is_in(
-            str(row["Serial_Number"]),
+        CommonActions.soft_assert(
+            page,
+            awb_number,
             flown_serial,
             "Serial number mismatch in Flown tab",
         )
@@ -94,8 +103,9 @@ def test_View_AWB_TC3(browser_page):
         # SECTOR TAB
         view_awb.click_on_sector_link()
         sector_serial = view_awb.get_serial_number_text()
-        check.is_in(
-            str(row["Serial_Number"]),
+        CommonActions.soft_assert(
+            page,
+            awb_number,
             sector_serial,
             "Serial number mismatch in Sector tab",
         )

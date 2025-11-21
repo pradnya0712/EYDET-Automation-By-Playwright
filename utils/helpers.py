@@ -2,6 +2,9 @@ from playwright.sync_api import Page
 import time
 import os
 from utils.excel_reader import read_excel_data
+import pytest_check as check
+import base64
+from pytest_html import extras
 
 testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "Add_AWB")
 
@@ -92,3 +95,22 @@ class CommonActions:
         screenshotName = f"{page_title}_{currentTime}.png"
         screenshotPath = os.path.join(screenwise_log_folder, screenshotName)
         self.page.screenshot(path=screenshotPath)
+
+    @staticmethod
+    def soft_assert(page, expected, actual, msg="Soft assertion failed"):
+        if expected != actual:
+
+            # Create list if not present
+            if not hasattr(page, "_soft_fail_screens"):
+                page._soft_fail_screens = []
+
+            # Take ONLY failure screenshot here
+            image = page.screenshot()
+            page._soft_fail_screens.append(image)
+
+            print(
+                f"❌ Soft Assert Failed:\nExpected: {expected}\nActual  : {actual}\nMsg     : {msg}"
+            )
+
+            # Mark failure in pytest-check
+            check.equal(actual, expected, msg)

@@ -43,12 +43,12 @@ def test_View_AWB_TC1(browser_page):
         expected_message = "0 records found"
         print("Search Result Message:", actual_message)
 
-        check.is_in(
+        CommonActions.soft_assert(
+            page,
             expected_message,
             actual_message,
             f"Expected '{expected_message}' but got '{actual_message}'",
         )
-
         # Zoom & screenshot
         commonaction.set_zoom_level(60)
         commonaction.take_screenshot(pagetitle)

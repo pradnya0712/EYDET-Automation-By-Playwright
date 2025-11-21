@@ -96,10 +96,11 @@ def test_Add_AWB_TC4(browser_page):
         )
 
         # 🔥 Correct soft assertion
-        check.is_in(
+        CommonActions.soft_assert(
+            page,
             expected_message,
             message,
-            f"Expected validation failure message not found for AWB {row['Airline_Prefix']} {awbNum}",
+            f"Expected validation error message not found for AWB {row['Airline_Prefix']} {awbNum}",
         )
 
         add_awb.click_on_close_popup_message()

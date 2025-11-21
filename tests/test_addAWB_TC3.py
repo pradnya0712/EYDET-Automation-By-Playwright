@@ -86,7 +86,9 @@ def test_Add_AWB_TC3(browser_page):
         expected_message = "Location : Invalid value"
 
         # 🔥 Correct soft assertion
-        check.is_in(
+
+        CommonActions.soft_assert(
+            page,
             expected_message,
             message,
             f"Expected validation error message not found for AWB {row['Airline_Prefix']} {awbNum}",

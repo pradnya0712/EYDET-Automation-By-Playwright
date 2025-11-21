@@ -92,12 +92,13 @@ def test_Add_AWB_TC2(browser_page):
         )
 
         # ✔ FIXED: Correct soft assertion
-        check.is_in(
+
+        CommonActions.soft_assert(
+            page,
             expected_message,
             message,
             f"AWB {row['Airline_Prefix']} {awbNum} did not validate successfully.",
         )
-
         add_awb.click_on_close_popup_message()
         print("Close popup clicked")
 

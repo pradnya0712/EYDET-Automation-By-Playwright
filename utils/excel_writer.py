@@ -31,7 +31,7 @@ def update_test_results_in_excel_sheet(output_file):
     sheet = wb["TestCase"]
 
     # Parse output file
-    with open(output_file, "r") as f:
+    with open(output_file, "r", encoding="utf-8") as f:
         output_lines = f.readlines()
 
     # Build result map

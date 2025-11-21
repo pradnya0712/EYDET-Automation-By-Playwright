@@ -49,10 +49,11 @@ def test_View_AWB_TC2(browser_page):
 
         # Soft assertion: verify record count
         actual_message = view_awb.get_actual_message()
-        expected_message = "1 records found"
+        expected_message = " 1 records found"
         print("Search Result Message:", actual_message)
 
-        check.is_in(
+        CommonActions.soft_assert(
+            page,
             expected_message,
             actual_message,
             f"Expected '{expected_message}' but got '{actual_message}'",
