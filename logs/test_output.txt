@@ -4,7 +4,8 @@ utils\helpers.py:116 in soft_assert() -> check.equal(actual, expected, msg)
 
 ------------------------------------------------------------
 Failed Checks: 1
-test_Add_AWB_TC2 FAIL | FAILURE: check AWB- 057 97024896 failed in validation, Please see error section. == AWB - 057 97024896 successfully validated.: AWB 057 97024896 did not validate successfully.
+test_Add_AWB_TC2 FAIL | FAILURE: check 
+ == AWB - 057 97024896 successfully validated.: AWB 057 97024896 did not validate successfully.
 tests\test_addAWB_TC2.py:96 in test_Add_AWB_TC2() -> CommonActions.soft_assert(
 utils\helpers.py:116 in soft_assert() -> check.equal(actual, expected, msg)
 
