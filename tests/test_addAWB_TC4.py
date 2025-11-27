@@ -12,6 +12,7 @@ testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "Add_AW
 print("Excel columns:", testdata[0].keys())
 
 
+@pytest.mark.add_awb
 def test_Add_AWB_TC4(browser_page):
 
     try:

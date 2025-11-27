@@ -17,7 +17,7 @@ def login(browser_page, save_state=False):
     print(f"Current page URL: {page.url}")
 
     assert (
-        "AF CRA DET Environment - Login" in page.title()
+        "EK DET Environment - Login" in page.title()
     ), "title does not match with expected title"
 
     loginObject = SsoLoginObjects(page)
@@ -27,7 +27,7 @@ def login(browser_page, save_state=False):
     loginObject.click_on_login_btn()
 
     # OTP screen is handled inside your POM method
-    loginObject.click_on_submit_otp_btn()
+    # loginObject.click_on_submit_otp_btn()
 
     print("➡ Waiting for home page after OTP...")
     try:

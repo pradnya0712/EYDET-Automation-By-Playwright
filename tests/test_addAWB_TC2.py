@@ -11,6 +11,7 @@ testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "Add_AW
 print("Excel columns:", testdata[0].keys())
 
 
+@pytest.mark.add_awb
 def test_Add_AWB_TC2(browser_page):
     try:
         # page = login(browser_page)
@@ -61,6 +62,7 @@ def test_Add_AWB_TC2(browser_page):
         add_awb.enter_gross_weight(row["Gross_Weight"])
         add_awb.enter_rate_class(row["Rate_Class"])
         add_awb.enter_chargeable_weight(row["Chargeable_Weight"])
+        commonaction.take_screenshot(pagetitle)
         add_awb.enter_rate(row["Rate"])
         add_awb.enter_discount(row["Discount"])
         add_awb.enter_commission(row["Commission"])

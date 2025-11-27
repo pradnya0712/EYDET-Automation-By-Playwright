@@ -10,6 +10,7 @@ config = get_config("LoginDetails")
 testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "View_AWB")
 
 
+@pytest.mark.view_awb
 def test_View_AWB_TC3(browser_page):
     try:
         # page = login(browser_page)

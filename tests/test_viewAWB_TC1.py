@@ -10,6 +10,7 @@ config = get_config("LoginDetails")
 testdata = read_excel_data(os.getcwd() + "/testdata/" + "TestData.xlsx", "View_AWB")
 
 
+@pytest.mark.view_awb
 def test_View_AWB_TC1(browser_page):
     try:
         # page = login(browser_page)
@@ -40,7 +41,7 @@ def test_View_AWB_TC1(browser_page):
         commonaction.take_screenshot(pagetitle)
         # Soft assertion: Validate message
         actual_message = view_awb.get_actual_message()
-        expected_message = "0 records found"
+        expected_message = " 0 records found"
         print("Search Result Message:", actual_message)
 
         CommonActions.soft_assert(

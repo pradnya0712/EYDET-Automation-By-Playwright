@@ -1,23 +1,12 @@
-test_Add_AWB_TC1 FAIL | FAILURE: check AWB- 057 97024885 failed in validation, Please see error section. == AWB - 057 97024885 successfully validated.: AWB 057 97024885 did not validate successfully.
-tests\test_addAWB_TC1.py:85 in test_Add_AWB_TC1() -> CommonActions.soft_assert(
+test_Add_AWB_TC1 FAIL | FAILURE: check AWB- 176 97024933 failed in validation, Please see error section. == AWB - 176 97024933 successfully validated.: AWB 176 97024933 did not validate successfully.
+tests\test_addAWB_TC1.py:87 in test_Add_AWB_TC1() -> CommonActions.soft_assert(
 utils\helpers.py:116 in soft_assert() -> check.equal(actual, expected, msg)
 
 ------------------------------------------------------------
 Failed Checks: 1
-test_Add_AWB_TC2 FAIL | FAILURE: check 
- == AWB - 057 97024896 successfully validated.: AWB 057 97024896 did not validate successfully.
-tests\test_addAWB_TC2.py:96 in test_Add_AWB_TC2() -> CommonActions.soft_assert(
-utils\helpers.py:116 in soft_assert() -> check.equal(actual, expected, msg)
-
-------------------------------------------------------------
-Failed Checks: 1
+test_Add_AWB_TC2 PASS
 test_Add_AWB_TC3 PASS
 test_Add_AWB_TC4 PASS
-test_View_AWB_TC1 FAIL | FAILURE: check  1 records found == 0 records found: Expected '0 records found' but got ' 1 records found'
-tests\test_viewAWB_TC1.py:46 in test_View_AWB_TC1() -> CommonActions.soft_assert(
-utils\helpers.py:116 in soft_assert() -> check.equal(actual, expected, msg)
-
-------------------------------------------------------------
-Failed Checks: 1
+test_View_AWB_TC1 PASS
 test_View_AWB_TC2 PASS
 test_View_AWB_TC3 PASS

@@ -20,8 +20,9 @@ def browser_page():
 
         # store soft assertion screenshots inside page object
         page._soft_fail_screens = []
+        # https://rapidwebcra-det-af.accelya.io/CRA/home.htm
 
-        APP_URL = "https://rapidwebcra-det-af.accelya.io/CRA/home.htm"
+        APP_URL = "http://10.23.2.194:38080/CRA/home.htm"
         page.goto(APP_URL, wait_until="domcontentloaded")
         yield page
 
